@@ -8,7 +8,7 @@ path = require('path')
 abspath = (fn) ->
 	return path.resolve(__dirname, fn)
 
-copyFile = (path_from, path_to) ->
+copyFileSync = (path_from, path_to) ->
 	data = fs.readFileSync(path_from)
 	fs.writeFileSync(path_to,data)
 	return null
@@ -16,10 +16,10 @@ copyFile = (path_from, path_to) ->
 
 #-----------  exported functions ----------------------
 
-#walkTree based on:
+#walkTreeSync based on:
 #http://rosettacode.org/wiki/Walk_a_directory/Recursively#CoffeeScript
 
-walkTree = (dir, f_match, f_visit) ->
+walkTreeSync = (dir, f_match, f_visit) ->
   _walk_tree = (dir) ->
     fns = fs.readdirSync dir
     for fn in fns
@@ -38,7 +38,7 @@ walkTree = (dir, f_match, f_visit) ->
 
 
 
-copyTree = (dir_from, dir_to, f_match) ->
+copyTreeSync = (dir_from, dir_to, f_match) ->
 
 	if fs.existsSync(dir_to) isnt true 
 		fs.mkdirSync dir_to
@@ -51,12 +51,12 @@ copyTree = (dir_from, dir_to, f_match) ->
 		if fs.statSync(path_from).isDirectory()
 			console.log 'copying dir ' + path_from + ' to ' + path_to
 			fs.mkdirSync path_to
-			copyTree path_from, path_to, f_match
+			copyTreeSync path_from, path_to, f_match
 
 		else if f_match(fn)
 			try
 					console.log 'copying ' + path_from + ' to ' + path_to
-					copyFile(path_from, path_to)
+					copyFileSync(path_from, path_to)
 			catch e
 				console.log 'Error creating ' + path_to + ' --skipped'
 
@@ -67,11 +67,11 @@ copyTree = (dir_from, dir_to, f_match) ->
 
 
 
-# walk based on python os.walk function, which returns a list of
+# walkSync based on python os.walk function, which returns a list of
 # tuples with: (dirname, dirs, files )
 
 
-walk = (dir) ->
+walkSync = (dir) ->
   dir_list = []
   _walk = (dir) ->
     fns = fs.readdirSync dir
@@ -98,8 +98,8 @@ walk = (dir) ->
 
 
 module.exports = {
-	copyTree
-	walkTree
-  walk
+	copyTreeSync
+	walkTreeSync
+  walkSync
 }
 

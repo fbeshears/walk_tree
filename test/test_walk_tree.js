@@ -4,6 +4,6 @@
 
   wt = require('../lib/walk_tree');
 
-  console.log(wt.walk(__dirname));
+  console.log(wt.walkSync(__dirname));
 
 }).call(this);
