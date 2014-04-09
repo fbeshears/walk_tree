@@ -1,0 +1,27 @@
+{
+  "name": "walk_tree",
+  "version": "0.0.1",
+  "description": "Functions for walking and copying directory structures.",
+  "main": "./lib/walk_tree.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node ./test/test_walk_tree.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fbeshears/walk_tree.git"
+  },
+  "keywords": [
+    "directory",
+    "walk",
+    "copy"
+  ],
+  "author": "Fred M Beshears",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fbeshears/walk_tree/issues"
+  },
+  "homepage": "https://github.com/fbeshears/walk_tree"
+}
